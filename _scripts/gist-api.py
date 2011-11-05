@@ -37,7 +37,6 @@ def fetch_label(user):
                  descriptions[int(label_id)] = description
     return {'id_map': id_map, 'descriptions' : descriptions}
 
-os.system("git checkout gh-pages")
 user = read_config.ConfigSectionMap('user')['name']
 LABEL_DATA = fetch_label(user)
 main_path = read_config.ConfigSectionMap('user')['main_path']
@@ -47,24 +46,12 @@ def git_submodule():
     id_map = LABEL_DATA['id_map']
     os.system("git checkout master")
     for i in range(len(id_map.keys())):
-        # if not os.path.exists(gist_path + id_map.keys()[i]):
-        #     os.mkdir(id_map.keys()[i])
         for j in range(len(id_map[id_map.keys()[i]])):
             os.system("git submodule add git://gist.github.com/%d.git %d" %
                       (id_map[id_map.keys()[i]][j],id_map[id_map.keys()[i]][j]))
 
-# def create_jekyll():
-#     if not os.path.exists(main_path + "_layouts"):
-#         os.system("cp -r " + main_path + "_layouts " + gist_path)
-#         os.system("git add _layouts")
-#         os.system("git commit -m '_layouts eklendi.'")
-#     if not os.path.exists(gist_path + "_config.yml"):
-#         os.system("cp " + main_path + "_config.yml " + gist_path)
-#         os.system("git add _config.yml")
-#         os.system("git commit -m '_config.yml eklendi.'")
-
 def sub_page():
-    template = TemplateManager().prepare(main_path + "_scripts/templates/sub_template.tmpl")
+    template = TemplateManager().prepare(main_path + "/_scripts/templates/sub_template.tmpl")
     tproc = TemplateProcessor()
     tproc.set("title", "Gistlerim")
     gists = []
@@ -99,7 +86,7 @@ def sub_page():
 
 def main_page():
     os.system("git checkout gh-pages")
-    template = TemplateManager().prepare(main_path + "_scripts/templates/main_template.tmpl")
+    template = TemplateManager().prepare(main_path + "/_scripts/templates/main_template.tmpl")
     tproc = TemplateProcessor()
     tproc.set("title", "Gistlerim")
     gists = []
