@@ -7,6 +7,6 @@ title: Gistlerim
 
 <div id="accordion"> 
 <TMPL_LOOP Gists>
-	<li><h3><a href="#"><TMPL_VAR description ESCAPE="HTML"></a></h3></li>
+	<h3><a href="#"><TMPL_VAR description ESCAPE="HTML"></a></h3>
 	<div><script src="https://gist.github.com/<TMPL_VAR id ESCAPE="HTML">.js"></script> </div>
 </TMPL_LOOP>
