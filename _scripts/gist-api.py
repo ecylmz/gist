@@ -37,6 +37,7 @@ def fetch_label(user):
                  descriptions[int(label_id)] = description
     return {'id_map': id_map, 'descriptions' : descriptions}
 
+os.system("git checkout gh-pages")
 user = read_config.ConfigSectionMap('user')['name']
 LABEL_DATA = fetch_label(user)
 main_path = read_config.ConfigSectionMap('user')['main_path']
@@ -98,7 +99,7 @@ def sub_page():
         os.system("git commit -a -m 'güncellendi.'")
 
 def main_page():
-    os.system("git checkout -b gh-pages")
+    os.system("git checkout gh-pages")
     template = TemplateManager().prepare(main_path + "_scripts/templates/main_template.tmpl")
     tproc = TemplateProcessor()
     tproc.set("title", "Gistlerim")
