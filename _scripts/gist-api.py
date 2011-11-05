@@ -54,7 +54,6 @@ def git_submodule():
 def sub_page():
     template = TemplateManager().prepare(main_path + "/_scripts/templates/sub_template.tmpl")
     tproc = TemplateProcessor()
-    tproc.set("title", "Gistlerim")
     gists = []
     id_map = LABEL_DATA['id_map']
     description = LABEL_DATA['descriptions']
@@ -76,7 +75,7 @@ def sub_page():
                 gist["id"] = id_map[label][i]
                 gist["description"] = description[id_map[label][i]]
                 gists.append(gist)
-        tproc.set("Label", "emre")
+        tproc.set("hmm", "emre")
         tproc.set("Gists", gists)
         content = tproc.process(template)
         f = open("index.html","w")
@@ -90,7 +89,6 @@ def main_page():
     os.system("git checkout gh-pages")
     template = TemplateManager().prepare(main_path + "/_scripts/templates/main_template.tmpl")
     tproc = TemplateProcessor()
-    tproc.set("title", "Gistlerim")
     gists = []
     id_map = LABEL_DATA['id_map']
     for label in id_map.keys():
