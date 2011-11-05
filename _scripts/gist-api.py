@@ -41,7 +41,6 @@ os.system("git checkout gh-pages")
 user = read_config.ConfigSectionMap('user')['name']
 LABEL_DATA = fetch_label(user)
 main_path = read_config.ConfigSectionMap('user')['main_path']
-gist_path = read_config.ConfigSectionMap('user')['gist_path']
 os.chdir(main_path)
 
 def git_submodule():
