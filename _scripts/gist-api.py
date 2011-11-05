@@ -49,7 +49,7 @@ def git_submodule():
         for j in range(len(id_map[id_map.keys()[i]])):
             os.system("git submodule add git://gist.github.com/%d.git %d" %
                       (id_map[id_map.keys()[i]][j],id_map[id_map.keys()[i]][j]))
-    os.system("git commit -a -m 'güncellendi.'")
+    os.system("git commit -m 'güncellendi.'")
 
 def sub_page():
     template = TemplateManager().prepare(main_path + "/_scripts/templates/sub_template.tmpl")
@@ -82,8 +82,8 @@ def sub_page():
         f.write(content)
         f.close()
         gists = [] # gists'i sıfırla, çünkü her depo için farklı etiketli gistler var.
-        os.system("git add *")
-        os.system("git commit -a -m 'güncellendi.'")
+        os.system("git add index.html")
+        os.system("git commit -m 'güncellendi.'")
 
 def main_page():
     os.system("git checkout gh-pages")
@@ -96,14 +96,13 @@ def main_page():
         gist["label"] = label
         gist["sum_label"] = len(id_map[label])
         gists.append(gist)
-        #gists = [] # gists'i sıfırla, çünkü her depo için farklı etiketli gistler var.
     tproc.set("Gists", gists)
     content = tproc.process(template)
     f = open("index.html","w")
     f.write(content)
     f.close()
     os.system("git add index.html")
-    os.system("git commit -a -m 'güncellendi.'")
+    os.system("git commit -m 'güncellendi.'")
     sub_page()
 
 if __name__ == '__main__':
