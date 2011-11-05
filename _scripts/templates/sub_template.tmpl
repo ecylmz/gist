@@ -7,5 +7,5 @@ title: Gistlerim
 
 <TMPL_LOOP Gists>
 	<li><a id="toggleLink" href="#"><TMPL_VAR description ESCAPE="HTML"></a></li>
-	<div><script src="https://gist.github.com/<TMPL_VAR id ESCAPE="HTML">.js"></script> </div>
+	<div id="toggle"><script src="https://gist.github.com/<TMPL_VAR id ESCAPE="HTML">.js"></script> </div>
 </TMPL_LOOP>
