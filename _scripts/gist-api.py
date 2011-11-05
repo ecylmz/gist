@@ -102,7 +102,7 @@ def main_page():
     f.write(content)
     f.close()
     os.system("git add index.html")
-    os.system("git commit -m 'güncellendi.'")
+    os.system("git commit -a -m 'güncellendi.'")
     sub_page()
 
 if __name__ == '__main__':
