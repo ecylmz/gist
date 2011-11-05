@@ -76,7 +76,7 @@ def sub_page():
                 gist["id"] = id_map[label][i]
                 gist["description"] = description[id_map[label][i]]
                 gists.append(gist)
-        tproc.set("Label", str(label))
+        tproc.set("Label", label)
         tproc.set("Gists", gists)
         content = tproc.process(template)
         f = open("index.html","w")
