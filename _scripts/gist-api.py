@@ -49,6 +49,7 @@ def git_submodule():
         for j in range(len(id_map[id_map.keys()[i]])):
             os.system("git submodule add git://gist.github.com/%d.git %d" %
                       (id_map[id_map.keys()[i]][j],id_map[id_map.keys()[i]][j]))
+    os.system("git commit -a -m 'güncellendi.'")
 
 def sub_page():
     template = TemplateManager().prepare(main_path + "/_scripts/templates/sub_template.tmpl")
