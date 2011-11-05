@@ -6,6 +6,6 @@ title: Gistlerim
 <h1 id="gist"> Gistlerim </h1>
 
 <TMPL_LOOP Gists>
-	<li><a id="slick-toggle" href="#"><TMPL_VAR description ESCAPE="HTML"></a></li>
-	<div id="slickbox"><script src="https://gist.github.com/<TMPL_VAR id ESCAPE="HTML">.js"></script> </div>
+	<li><a id="toggleLink" href="#"><TMPL_VAR description ESCAPE="HTML"></a></li>
+	<div><script src="https://gist.github.com/<TMPL_VAR id ESCAPE="HTML">.js"></script> </div>
 </TMPL_LOOP>
