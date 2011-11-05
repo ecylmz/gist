@@ -45,9 +45,6 @@ os.chdir(main_path)
 def git_submodule():
     id_map = LABEL_DATA['id_map']
     os.system("git checkout master")
-    if not os.path.exists(main_path + "/gists"):
-        os.mkdir(main_path + "/gists")
-    os.chdir(main_path + "/gists")
     for i in range(len(id_map.keys())):
         for j in range(len(id_map[id_map.keys()[i]])):
             os.system("git submodule add git://gist.github.com/%d.git %d" %
@@ -89,7 +86,6 @@ def sub_page():
         os.system("git commit -a -m 'güncellendi.'")
 
 def main_page():
-    os.chdir(main_path)
     os.system("git checkout gh-pages")
     template = TemplateManager().prepare(main_path + "/_scripts/templates/main_template.tmpl")
     tproc = TemplateProcessor()
