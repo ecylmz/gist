@@ -1,0 +1,10 @@
+---
+layout: default
+title: Gistlerim
+---
+
+<h1 id="gist"> Gistlerim </h1>
+
+<TMPL_LOOP Gists>
+	<li><a href="<TMPL_VAR label ESCAPE="HTML">"><TMPL_VAR key ESCAPE="HTML"><TMPL_VAR label ESCAPE="HTML"> ( <TMPL_VAR sum_label ESCAPE="HTML"> )</a></li>
+</TMPL_LOOP>

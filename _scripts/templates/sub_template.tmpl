@@ -1,0 +1,11 @@
+---
+layout: default
+title: Gistlerim
+---
+
+<h1 id="gist"> Gistlerim </h1>
+
+<TMPL_LOOP Gists>
+	<li><a href="https://gist.github.com/<TMPL_VAR id ESCAPE="HTML">"><TMPL_VAR description ESCAPE="HTML"></a></li>
+	<div style="height:65px; overflow:hidden;"><script src="https://gist.github.com/<TMPL_VAR id ESCAPE="HTML">.js"></script> </div>
+</TMPL_LOOP>
