@@ -11,11 +11,15 @@ from htmltmpl import TemplateManager, TemplateProcessor
 GIST_API_MAIN_URL = "https://api.github.com/users/"
 
 def fetch_gists_data(user):
+    """Sadece github'tan json verisini alır ve veriyi döner."""
     gist_raw_data = requests.get(GIST_API_MAIN_URL+user+"/gists").content
     gist_data = json.loads(gist_raw_data)
     return gist_data
 
 def fetch_label(user):
+    """Etiketleme sistemini yapar. Gist sayısı kadar dolaşır ve [ ]
+    paternini arar. 'etiket:id' ve 'id:açıklama' sözlüklerini döner.
+    """
     gist_data = fetch_gists_data(user)
     gist_count = len(gist_data)
     descriptions = {}
@@ -31,9 +35,7 @@ def fetch_label(user):
              for j in range(len(use_label)):
                  if use_label[j] not in id_map:
                      id_map[use_label[j]] = []
-                     id_map[use_label[j]].append(int(label_id))
-                 else:
-                     id_map[use_label[j]].append(int(label_id))
+                 id_map[use_label[j]].append(int(label_id))
                  descriptions[int(label_id)] = description
     return {'id_map': id_map, 'descriptions' : descriptions}
 
@@ -43,6 +45,7 @@ main_path = read_config.ConfigSectionMap('user')['main_path']
 os.chdir(main_path)
 
 def git_submodule():
+    """gistleri submodule olarak master dalına ekler."""
     id_map = LABEL_DATA['id_map']
     os.system("git checkout master")
     for i in range(len(id_map.keys())):
@@ -52,6 +55,7 @@ def git_submodule():
     os.system("git commit -a -m 'güncellendi.'")
 
 def sub_page():
+    """Her etiket için ayrı bir index.html sayfa üretir."""
     template = TemplateManager().prepare(main_path + "/_scripts/templates/sub_template.tmpl")
     tproc = TemplateProcessor()
     gists = []
@@ -86,6 +90,7 @@ def sub_page():
         os.system("git commit -a -m 'güncellendi.'")
 
 def main_page():
+    """Ana sayfa için index.html sayfası hazırlar."""
     os.system("git checkout gh-pages")
     template = TemplateManager().prepare(main_path + "/_scripts/templates/main_template.tmpl")
     tproc = TemplateProcessor()
